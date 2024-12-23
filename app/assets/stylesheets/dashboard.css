@@ -1,0 +1,81 @@
+/* Adiciona padding ao conteúdo para evitar que fique sobreposto ao navbar */
+body {
+    padding-top: 70px; /* Ajuste o valor conforme a altura do navbar */
+  }
+  
+  /* Estilo para o menu navbar */
+  .navbar {
+    background-color: #343a40;
+  }
+  
+  /* Estilo para os itens do menu com ícones */
+  .navbar .navbar-nav .nav-link {
+    color: #ffffff;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s ease;
+  }
+  
+  .navbar .navbar-nav .nav-link i {
+    margin-right: 10px;
+    font-size: 1.2rem;
+  }
+  
+  /* Efeito hover para itens do menu */
+  .navbar .navbar-nav .nav-link:hover {
+    background-color: #495057;
+    color: #ffffff;
+  }
+  
+  /* Estilo do botão de toggle no mobile */
+  .navbar-toggler {
+    border-color: #ffffff;
+  }
+  
+  .navbar-toggler-icon {
+    background-color: #ffffff;
+  }
+  
+  /* Estilo da área de usuário logado */
+  .navbar .dropdown-toggle {
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar .dropdown-toggle i {
+    margin-right: 5px;
+  }
+  
+  .navbar .dropdown-menu {
+    background-color: #343a40;
+  }
+  
+  .navbar .dropdown-item {
+    color: #ffffff;
+    padding: 10px 15px;
+  }
+  
+  .navbar .dropdown-item:hover {
+    background-color: #495057;
+    color: #ffffff;
+  }
+  
+  /* Ajustes para o conteúdo */
+  .content {
+    margin-top: 80px; /* Evita que o conteúdo se sobreponha ao navbar */
+  }
+  
+  /* Ajustes no modo mobile para o botão de toggle */
+  @media (max-width: 991px) {
+    .navbar-toggler-icon {
+      background-color: #495057;
+    }
+  }
+
+  @media (max-width: 991px) {
+    .navbar-toggler-icon {
+      background-color: #495057; /* Escurece o ícone */
+    }
+  }
+  

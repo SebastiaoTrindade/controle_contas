@@ -1,0 +1,61 @@
+/* app/assets/stylesheets/signup.css */
+.body-signup{
+    background: none;
+    background-color:#fff;
+}
+
+.signup{
+    background-color: #fff;
+}
+
+.container img{
+    width: 80%;
+}
+
+h2 .mb-4{
+    color: #58d68d;
+    font-weight: bold;
+}
+
+.card{
+    border:2px solid #d5f5e3;
+}
+
+/* Mobile */
+@media (max-width: 576px) { /* Para telas pequenas */
+    .signup img {
+        max-width: 100%; /* Garante que a imagem não ultrapasse a largura da tela */
+        height: auto; /* Mantém a proporção da imagem */
+        margin-bottom: 20px; /* Adiciona espaço abaixo da imagem */
+    }
+
+    .form-control {
+        font-size: 14px; /* Reduz o tamanho da fonte dos campos */
+        padding: 8px; /* Reduz o espaçamento interno dos campos */
+    }
+
+    .btn-block {
+        font-size: 16px; /* Ajusta o tamanho do botão */
+        padding: 10px; /* Ajusta o espaçamento interno do botão */
+    }
+
+    .body-signup .container-fluid.signup {
+        padding: 15px; /* Reduz o espaçamento da seção no modo mobile */
+    }
+}
+
+/* Ajuste da imagem no smartphone*/
+.signup img {
+    max-width: 70%; /* Reduz a largura máxima da imagem para 70% do contêiner */
+    height: auto; /* Mantém a proporção da imagem */
+    margin: 0 auto; /* Centraliza a imagem */
+}
+
+/* Regras para telas pequenas */
+@media (max-width: 576px) {
+    .signup img {
+        max-width: 50%; /* Reduz ainda mais a imagem no modo mobile */
+    }
+}
+
+

@@ -11,7 +11,7 @@
     <!-- FontAwesome CDN -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 </head>
-<body>    
+<body-login>    
     <div id="alert-container"> 
         <% if flash[:notice] %>
             <div id="notice" class="alert alert-success">
@@ -32,7 +32,7 @@
                     <div id="login-box" class="col-md-12">
                         <div id="login-form" class="form">
                             <%= form_with url: login_path, scope: :session, method: :post, class: "form" do |f| %>
-                                <h3 class="text-center mb-5">Login Rails 7</h3>
+                                <h3 class="text-center mb-5">Contas a Pagar</h3>
                                     <div class="input-group form-group mb-4">   
                                         
                                         <div class="input-group-prepend">
@@ -70,5 +70,5 @@
     <!-- Script personalizado -->
     <script src="/assets/main.js"></script>
 
-</body>
+</body-login>
 </html>

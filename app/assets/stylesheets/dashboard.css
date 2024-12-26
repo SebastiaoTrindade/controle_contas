@@ -1,5 +1,5 @@
 /* Adiciona padding ao conteúdo para evitar que fique sobreposto ao navbar */
-body {
+body{
     padding-top: 70px; /* Ajuste o valor conforme a altura do navbar */
   }
   
@@ -59,8 +59,7 @@ body {
   .navbar .dropdown-item:hover {
     background-color: #495057;
     color: #ffffff;
-  }
-   
+  }   
 
 .card {
   background-color: #ffffff;

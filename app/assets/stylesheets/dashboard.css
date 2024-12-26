@@ -60,7 +60,40 @@ body {
     background-color: #495057;
     color: #ffffff;
   }
-  
+   
+
+.card {
+  background-color: #ffffff;
+  border-radius: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Sombra suave */
+.card.shadow-lg {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Efeito de Hover */
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Título do Card */
+.card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #6c757d;
+  line-height: 1.5;
+}
+
+/* Texto do Card */
+.card-text {
+  font-size: 1rem;
+  color: #6c757d;
+  line-height: 1.5;
+}
+ 
   /* Ajustes para o conteúdo */
   .content {
     margin-top: 80px; /* Evita que o conteúdo se sobreponha ao navbar */

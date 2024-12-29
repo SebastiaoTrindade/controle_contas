@@ -8,14 +8,18 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if @user.save
-      flash[:success] = "Usuário cadastrado com sucesso!"
-      redirect_to login_path
+    
+    if User.exists?(email: @user.email) || User.exists?(name: @user.name)
+      render json: { status: 'error', message: 'Nome ou email já cadastrados. Tente novamente com outro.' }
     else
-      flash.now[:danger] = "Erro ao cadastrar o usuário. Verifique os dados e tente novamente."
-      render :new
+      if @user.save
+        render json: { status: 'success', message: 'Usuário cadastrado com sucesso!' }
+      else
+        render json: { status: 'error', message: 'Erro ao cadastrar o usuário. Verifique os dados e tente novamente.' }
+      end
     end
   end
+  
 
   private
 

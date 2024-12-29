@@ -36,7 +36,7 @@
           <div class="col-md-6 col-sm-12 text-center mb-4">
             <img src="https://mspublicschoolpremnagar.com/login/images/logo/login.gif" alt="Logo" class="img-fluid">
           </div>
-
+          <div id="alert-container" style="position: fixed; top: 0; left: 0; width: 100%; z-index: 1050;"></div>
           <!-- Formulário -->
           <div class="col-md-6 col-sm-12">            
             <h2 class="mb-4">Cadastro de Usuários</h2> 
@@ -44,7 +44,7 @@
               <div class="card-body py-5 px-md-5">
                 <%= form_with(model: @user, url: users_path, local: true) do |form| %>                  
                   <div class="form-outline mb-4">                  
-                    <%= form.text_field :name, class: "form-control", placeholder: "Entre com seu nome", required: true %>                  
+                    <%= form.text_field :name, class: "form-control", placeholder: "Entre com seu nome", required: true, id: "nome" %>                  
                   </div>                  
                   
                   <div class="form-outline mb-4">                  
@@ -69,21 +69,71 @@
     </div>   
   </section>  
 
+  
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      const alert = document.querySelector(".alert"); // Seleciona o alerta
+      const form = document.querySelector("form"); // Seleciona o formulário
+      const nameInput = document.getElementById("name"); // Seleciona o campo de nome
+      const alertContainer = document.getElementById("alert-container"); // Contêiner para alertas
   
-      if (alert) {
-        // Aplica a transição após 2 segundos
+      // Função para criar e exibir alertas
+      const showAlert = (message, type = "success") => {
+        const alertDiv = document.createElement("div");
+        alertDiv.className = `alert alert-${type}`;
+        alertDiv.textContent = message;
+  
+        // Adiciona o alerta no contêiner
+        alertContainer.appendChild(alertDiv);
+  
+        // Esconde o alerta após 2 segundos
         setTimeout(() => {
-          alert.style.transition = "opacity 0.5s"; // Define a duração da transição
-          alert.style.opacity = "0"; // Faz o alerta desaparecer
-          // Após a transição, remove o alerta do DOM
-          setTimeout(() => alert.remove(), 500);
-        }, 2000); // Espera 2 segundos antes de iniciar a transição
+          alertDiv.style.opacity = "0";
+  
+          // Remove o alerta do DOM após a transição
+          setTimeout(() => {
+            alertDiv.remove();
+  
+            // Limpa o formulário e define o foco
+            form.reset(); // Limpa os campos do formulário
+            nameInput.focus(); // Define o foco no campo "name"
+          }, 500); // Aguarda 0.5s após a transição
+        }, 2000); // Aguarda 2 segundos antes de iniciar a transição
+      };
+  
+      // Adiciona comportamento ao envio do formulário
+      if (form) {
+        form.addEventListener("submit", (event) => {
+          event.preventDefault(); // Impede o envio do formulário
+  
+          // Aqui você pode usar o método `fetch` para enviar uma requisição para o servidor
+          const formData = new FormData(form);
+  
+          // Realiza a requisição de forma assíncrona (Ajax) para verificar se o nome ou e-mail já estão cadastrados
+          fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+              'X-Requested-With': 'XMLHttpRequest'
+            }
+          })
+          .then(response => response.json())
+          .then(data => {
+            if (data.status === 'error') {
+              showAlert(data.message, 'danger'); // Exibe mensagem de erro se já existir o usuário
+            } else {
+              showAlert("Usuário cadastrado com sucesso!", 'success'); // Exibe mensagem de sucesso
+            }
+          })
+          .catch(error => {
+            console.error('Erro na requisição:', error);
+            showAlert('Erro ao tentar cadastrar o usuário. Tente novamente.', 'danger');
+          });
+        });
       }
     });
   </script>
+  
+
   
 </body>
 </html>

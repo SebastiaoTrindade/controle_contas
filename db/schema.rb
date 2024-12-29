@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_12_26_144326) do
+ActiveRecord::Schema[7.0].define(version: 2024_12_29_015150) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "conta", force: :cascade do |t|
-    t.string "nome"
+    t.string "nome_empresa"
     t.text "descricao"
     t.decimal "valor"
     t.date "data_vencimento"
@@ -30,14 +30,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_12_26_144326) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "usuarios", force: :cascade do |t|
-    t.string "nome"
-    t.string "email"
-    t.string "password_digest"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["name"], name: "index_users_on_name", unique: true
   end
 
 end

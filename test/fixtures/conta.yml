@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nome_empresa: MyString
+  descricao: MyText
+  valor: 9.99
+  data_vencimento: 2024-12-28
+  status: MyString
+
+two:
+  nome_empresa: MyString
+  descricao: MyText
+  valor: 9.99
+  data_vencimento: 2024-12-28
+  status: MyString

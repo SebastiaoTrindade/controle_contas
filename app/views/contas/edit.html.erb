@@ -1,0 +1,34 @@
+<h1>Editar Conta</h1>
+
+<%= form_with model: @conta, local: true do |form| %>
+  <div>
+    <%= form.label :nome_empresa %>
+    <%= form.text_field :nome_empresa %>
+  </div>
+
+  <div>
+    <%= form.label :descricao %>
+    <%= form.text_area :descricao %>
+  </div>
+
+  <div>
+    <%= form.label :valor %>
+    <%= form.number_field :valor, step: 0.01 %>
+  </div>
+
+  <div>
+    <%= form.label :data_vencimento %>
+    <%= form.date_select :data_vencimento %>
+  </div>
+
+  <div>
+    <%= form.label :status %>
+    <%= form.select :status, ['Pendente', 'Pago', 'Vencido'] %>
+  </div>
+
+  <div>
+    <%= form.submit "Atualizar Conta" %>
+  </div>
+<% end %>
+
+<%= link_to "Voltar", contas_path %>

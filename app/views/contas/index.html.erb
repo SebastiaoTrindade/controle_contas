@@ -1,0 +1,31 @@
+<h1>Contas Cadastradas</h1>
+
+<%= link_to "Nova Conta", new_conta_path %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome da Empresa</th>
+      <th>Descrição</th>
+      <th>Valor</th>
+      <th>Data de Vencimento</th>
+      <th>Status</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @contas.each do |conta| %>
+      <tr>
+        <td><%= conta.nome_empresa %></td>
+        <td><%= conta.descricao %></td>
+        <td><%= number_to_currency(conta.valor) %></td>
+        <td><%= conta.data_vencimento.strftime("%d/%m/%Y") %></td>
+        <td><%= conta.status %></td>
+        <td>
+          <%= link_to "Editar", edit_conta_path(conta) %> |
+          <%= link_to "Excluir", conta, method: :delete, data: { confirm: "Tem certeza?" } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

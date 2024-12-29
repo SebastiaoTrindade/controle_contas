@@ -1,12 +1,13 @@
 class ContasController < ApplicationController
   before_action :logged_in_user
+  layout false
 
   def new
-    @conta = Conta.new
+    @conta = Contum.new
   end
 
   def create
-    @cont = Conta.new(conta_params)
+    @conta = Contum.new(conta_params)
     if @conta.save
       flash[:success] = "Conta cadastrada com sucesso!"
       redirect_to contas_path
@@ -17,15 +18,15 @@ class ContasController < ApplicationController
   end
 
   def index
-    @contas = Contas.all
+    @contas = Contum.all
   end
 
   def edit
-    @conta = Conta.find(params[:id])
+    @conta = Contum.find(params[:id])
   end
 
   def update
-    @conta = Conta.find(params[:id])
+    @conta = Contum.find(params[:id])
       if @conta.update(conta_params)
         flash[:success] = "Conta atualizada com sucesso"
         redirect_to contas_path

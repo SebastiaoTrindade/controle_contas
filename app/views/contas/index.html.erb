@@ -1,31 +1,92 @@
-<h1>Contas Cadastradas</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 
-<%= link_to "Nova Conta", new_conta_path %>
+  <!-- Bootstrap CSS -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-<table>
-  <thead>
-    <tr>
-      <th>Nome da Empresa</th>
-      <th>Descrição</th>
-      <th>Valor</th>
-      <th>Data de Vencimento</th>
-      <th>Status</th>
-      <th>Ações</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @contas.each do |conta| %>
-      <tr>
-        <td><%= conta.nome_empresa %></td>
-        <td><%= conta.descricao %></td>
-        <td><%= number_to_currency(conta.valor) %></td>
-        <td><%= conta.data_vencimento.strftime("%d/%m/%Y") %></td>
-        <td><%= conta.status %></td>
-        <td>
-          <%= link_to "Editar", edit_conta_path(conta) %> |
-          <%= link_to "Excluir", conta, method: :delete, data: { confirm: "Tem certeza?" } %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+</head>
+<body>
+  <div class="container mt-5">
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-3">
+      <h1 class="text-center text-md-start mb-3 mb-md-0">Contas Cadastradas</h1>
+      <%= link_to "Nova Conta", new_conta_path, class: "btn btn-primary" %>
+    </div>
+  
+    <!-- Tabela para telas maiores -->
+    <div class="d-none d-md-block table-responsive">
+      <table class="table table-striped table-hover">
+        <thead class="table-dark">
+          <tr>
+            <th>Nome da Empresa</th>
+            <th>Descrição</th>
+            <th>Valor</th>
+            <th>Data de Vencimento</th>
+            <th>Status</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @contas.each do |conta| %>
+            <tr>
+              <td><%= conta.nome_empresa %></td>
+              <td><%= conta.descricao %></td>
+              <td><%= number_to_currency(conta.valor, unit: "R$", separator: ",", delimiter: ".") %></td>
+              <td><%= conta.data_vencimento.strftime("%d/%m/%Y") %></td>
+              <td>
+                <% if conta.status == "Pendente" %>
+                  <span class="badge bg-warning text-dark"><%= conta.status %></span>
+                <% elsif conta.status == "Pago" %>
+                  <span class="badge bg-success"><%= conta.status %></span>
+                <% else %>
+                  <span class="badge bg-danger"><%= conta.status %></span>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to "Editar", edit_conta_path(conta), class: "btn btn-sm btn-warning me-2 mb-1" %>
+                <%= link_to "Excluir", conta, method: :delete, data: { confirm: "Tem certeza?" }, class: "btn btn-sm btn-danger" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- Cards para telas menores -->
+    <div class="d-md-none">
+      <% @contas.each do |conta| %>
+        <div class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title"><%= conta.nome_empresa %></h5>
+            <p class="card-text"><strong>Descrição:</strong> <%= conta.descricao %></p>
+            <p class="card-text"><strong>Valor:</strong> <%= number_to_currency(conta.valor, unit: "R$", separator: ",", delimiter: ".") %></p>
+            <p class="card-text"><strong>Data de Vencimento:</strong> <%= conta.data_vencimento.strftime("%d/%m/%Y") %></p>
+            <p class="card-text">
+              <strong>Status:</strong>
+              <% if conta.status == "Pendente" %>
+                <span class="badge bg-warning text-dark"><%= conta.status %></span>
+              <% elsif conta.status == "Pago" %>
+                <span class="badge bg-success"><%= conta.status %></span>
+              <% else %>
+                <span class="badge bg-danger"><%= conta.status %></span>
+              <% end %>
+            </p>
+            <div class="d-flex">
+              <%= link_to "Editar", edit_conta_path(conta), class: "btn btn-warning btn-sm me-2 flex-fill" %>
+              <%= link_to "Excluir", conta, method: :delete, data: { confirm: "Tem certeza?" }, class: "btn btn-danger btn-sm flex-fill" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  
+
+  
+</body>
+</html>
+

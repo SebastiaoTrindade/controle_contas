@@ -1,5 +1,5 @@
 Rails.application.routes.draw do  
-  resources :conta
+  
   # Session Login
   root 'sessions#new'
   get 'login', to: 'sessions#new'
@@ -16,5 +16,5 @@ Rails.application.routes.draw do
 
   # Session Contas
   resources :contas
-      
+        
 end

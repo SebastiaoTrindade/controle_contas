@@ -1,0 +1,51 @@
+<%= form_with(model: @conta, url: contas_path, local: true, class: "needs-validation") do |form| %>
+  <div class="container py-4">
+    <div class="card shadow">
+      <div class="card-header bg-primary text-white">
+        <h4 class="mb-0">Cadastrar Nova Conta</h4>
+      </div>
+      <div class="card-body">
+        <!-- Nome da Empresa -->
+        <div class="mb-3">
+          <%= form.label :nome_empresa, "Nome da Empresa", class: "form-label fw-bold" %>
+          <%= form.text_field :nome_empresa, class: "form-control", placeholder: "Digite o nome da empresa", required: true %>
+          <div class="form-text">Informe o nome da empresa responsável pela conta.</div>
+        </div>
+
+        <!-- Valor -->
+        <div class="mb-3">
+          <%= form.label :valor, "Valor (R$)", class: "form-label fw-bold" %>
+          <%= form.number_field :valor, class: "form-control", step: 0.01, placeholder: "Ex: 100.00", required: true %>
+          <div class="form-text">Digite o valor da conta no formato 0.00.</div>
+        </div>
+
+        <!-- Data de Vencimento -->
+        <div class="mb-3">
+          <%= form.label :data_vencimento, "Data de Vencimento", class: "form-label fw-bold" %>
+          <%= form.date_field :data_vencimento, class: "form-control", required: true %>
+          <div class="form-text">Selecione a data de vencimento da conta.</div>
+        </div>
+
+        <!-- Status -->
+        <div class="mb-3">
+          <%= form.label :status, "Status", class: "form-label fw-bold" %>
+          <%= form.select :status, ['Pendente', 'Pago', 'Vencido'], {}, class: "form-select", required: true %>
+          <div class="form-text">Escolha o status atual da conta.</div>
+        </div>
+
+        <!-- Descrição -->
+        <div class="mb-3">
+          <%= form.label :descricao, "Descrição", class: "form-label fw-bold" %>
+          <%= form.text_area :descricao, class: "form-control", rows: 3, placeholder: "Detalhe a conta", required: true %>
+          <div class="form-text">Adicione uma breve descrição da conta.</div>
+        </div>
+
+        <!-- Botões -->
+        <div class="d-flex justify-content-between">
+          <%= form.submit "Salvar Conta", class: "btn btn-success px-4 py-2 fw-bold" %>
+          <%= link_to "Voltar", contas_path, class: "btn btn-secondary px-4 py-2 fw-bold" %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

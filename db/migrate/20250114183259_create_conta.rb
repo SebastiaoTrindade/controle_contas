@@ -1,6 +1,6 @@
-class CreateContas < ActiveRecord::Migration[7.0]
+class CreateConta < ActiveRecord::Migration[7.0]
   def change
-    create_table :contas do |t|
+    create_table :conta do |t|
       t.string :nome_empresa
       t.text :descricao
       t.decimal :valor

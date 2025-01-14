@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_01_07_174515) do
+ActiveRecord::Schema[7.0].define(version: 2025_01_14_183259) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "contas", force: :cascade do |t|
+  create_table "conta", force: :cascade do |t|
     t.string "nome_empresa"
     t.text "descricao"
     t.decimal "valor"

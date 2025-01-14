@@ -1,71 +1,47 @@
 class ContasController < ApplicationController
-  before_action :set_conta, only: %i[ show edit update destroy ]
-  layout false
-
-  # GET /contas or /contas.json
-  def index
-    @contas = Contas.all
-  end
-
-  # GET /contas/1 or /contas/1.json
-  def show
-  end
-
-  # GET /contas/new
+  before_action :logged_in_user
+ 
   def new
-    @conta = Contas.new
+    @conta = Conta.new
   end
 
-  # GET /contas/1/edit
-  def edit
-  end
-
-  # POST /contas or /contas.json
   def create
-    @conta = Contas.new(conta_params)
-
-    respond_to do |format|
-      if @conta.save
-        format.html { redirect_to @conta, notice: "Contas was successfully created." }
-        format.json { render :show, status: :created, location: @conta }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @conta.errors, status: :unprocessable_entity }
-      end
+    @conta = Conta.new(conta_params)
+    if @conta.save
+      redirect_to contas_path, notice: "Conta cadastrada com sucesso!"
+    else
+      render :new
     end
   end
 
-  # PATCH/PUT /contas/1 or /contas/1.json
+  def index
+    @contas = Conta.all
+  end
+
+  def edit
+    @conta = Conta.find(params[:id])
+  end
+
   def update
-    respond_to do |format|
-      if @conta.update(conta_params)
-        format.html { redirect_to @conta, notice: "Contas was successfully updated." }
-        format.json { render :show, status: :ok, location: @conta }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @conta.errors, status: :unprocessable_entity }
-      end
+    @conta = Conta.find(params[:id])
+    if @conta.update(conta_params)
+      redirect_to contas_path, notice: "Conta atualizada com sucesso!"
+    else
+      render :edit
     end
   end
 
-  # DELETE /contas/1 or /contas/1.json
   def destroy
+    @conta = Conta.find(params[:id])
     @conta.destroy
-
-    respond_to do |format|
-      format.html { redirect_to contas_index_path, status: :see_other, notice: "Contas was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_to contas_path, notice: "Conta excluída com sucesso!"
   end
+  
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_conta
-      @conta = Contas.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def conta_params
-      params.require(:conta).permit(:nome_empresa, :descricao, :valor, :data_vencimento, :status)
-    end
+  def conta_params
+    params.require(:conta).permit(:nome_empresa, :descricao, :valor, :data_vencimento, :status)
+  end
 end
+

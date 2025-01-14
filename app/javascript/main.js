@@ -1,3 +1,6 @@
+import "bootstrap";
+
+
 // Apagar notificação de cadastro
 $(document).ready(function () {
   console.log("main.js carregado!");

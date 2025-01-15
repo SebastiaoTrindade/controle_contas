@@ -1,34 +1,41 @@
-<h1>Editar Conta</h1>
+<div class="container mt-5">
+  <h1 class="mb-4">Editar Conta</h1>
 
-<%= form_with model: @conta, local: true do |form| %>
-  <div>
-    <%= form.label :nome_empresa %>
-    <%= form.text_field :nome_empresa %>
-  </div>
+  <%= form_with model: @conta, url: conta_path(@conta), method: :patch, local: true, class: "needs-validation" do |form| %>
+    <div class="mb-3">
+      <%= form.label :nome_empresa, class: "form-label" %>
+      <%= form.text_field :nome_empresa, class: "form-control", placeholder: "Digite o nome da empresa", required: true %>
+    </div>
 
-  <div>
-    <%= form.label :descricao %>
-    <%= form.text_area :descricao %>
-  </div>
+    <div class="mb-3">
+      <%= form.label :descricao, class: "form-label" %>
+      <%= form.text_area :descricao, class: "form-control", placeholder: "Descrição detalhada da conta", rows: 3, required: true %>
+    </div>
 
-  <div>
-    <%= form.label :valor %>
-    <%= form.number_field :valor, step: 0.01 %>
-  </div>
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <%= form.label :valor, class: "form-label" %>
+        <%= form.number_field :valor, step: 0.01, class: "form-control", placeholder: "Digite o valor da conta", required: true %>
+      </div>
+      <div class="col-md-6">
+        <%= form.label :data_vencimento, class: "form-label" %>
+        <div class="input-group">
+          <div class="input-group-text">
+            <i class="bi bi-calendar-date"></i>
+          </div>
+          <%= form.date_field :data_vencimento, class: "form-control", required: true %>
+        </div>
+      </div>
+    </div>
 
-  <div>
-    <%= form.label :data_vencimento %>
-    <%= form.date_select :data_vencimento %>
-  </div>
+    <div class="mb-3">
+      <%= form.label :status, class: "form-label" %>
+      <%= form.select :status, ['Pendente', 'Pago', 'Vencido'], {}, class: "form-select", required: true %>
+    </div>
 
-  <div>
-    <%= form.label :status %>
-    <%= form.select :status, ['Pendente', 'Pago', 'Vencido'] %>
-  </div>
-
-  <div>
-    <%= form.submit "Atualizar Conta" %>
-  </div>
-<% end %>
-
-<%= link_to "Voltar", contas_path %>
+    <div class="d-flex flex-column flex-md-row justify-content-between gap-3 mt-4">
+      <%= link_to "Voltar", contas_path, class: "btn btn-secondary w-100 w-md-auto" %>
+      <%= form.submit "Atualizar Conta", class: "btn btn-primary w-100 w-md-auto" %>
+    </div>
+  <% end %>
+</div>

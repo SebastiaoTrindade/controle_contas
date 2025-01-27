@@ -16,6 +16,7 @@ class ContasController < ApplicationController
   
   def index
     @contas = Conta.all
+    @contas = Conta.page(params[:page]).per(3)
   end
 
   def edit

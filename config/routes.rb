@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   # Session User
   get 'signup', to: 'users#new'
   post 'signup', to: 'users#create'
-  resources :users, only: [:new, :create]
+  resources :users, only: [:index,:new, :create]
   
   # Session Dashboard
   get 'dashboard', to: 'dashboard#index'

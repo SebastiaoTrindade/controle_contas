@@ -15,6 +15,6 @@ Rails.application.routes.draw do
   get 'dashboard', to: 'dashboard#index'
 
   # Session Contas
-  resources :contas
+  resources :contas, except: :show
         
 end

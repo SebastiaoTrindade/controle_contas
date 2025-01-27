@@ -13,7 +13,7 @@ class ContasController < ApplicationController
       render :new
     end
   end
-
+  
   def index
     @contas = Conta.all
   end

@@ -14,7 +14,7 @@
     <div class="container mt-5">
       <%= yield %>
     </div>
-    <%= javascript_importmap_tags %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload" %>
   </body>
 </html>
 

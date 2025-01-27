@@ -1,5 +1,3 @@
-import "bootstrap";
-
 
 // Apagar notificação de cadastro
 $(document).ready(function () {
